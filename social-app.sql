@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.35)
 # Database: social-app
-# Generation Time: 2021-12-13 14:26:51 +0000
+# Generation Time: 2021-12-13 16:05:07 +0000
 # ************************************************************
 
 
@@ -21,69 +21,19 @@ SET NAMES utf8mb4;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 
-# Dump of table app-users
+# Dump of table posts
 # ------------------------------------------------------------
 
-DROP TABLE IF EXISTS `app-users`;
+DROP TABLE IF EXISTS `posts`;
 
-CREATE TABLE `app-users` (
+CREATE TABLE `posts` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(12) DEFAULT NULL,
-  `user-bio` varchar(500) DEFAULT NULL,
-  `user-email` varchar(30) DEFAULT NULL,
-  `user-pw` varchar(20) DEFAULT NULL,
+  `content` varchar(255) NOT NULL DEFAULT '',
+  `user` varchar(12) NOT NULL DEFAULT '',
+  `date-time` datetime NOT NULL,
+  `time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `delete` tinyint(1) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-LOCK TABLES `app-users` WRITE;
-/*!40000 ALTER TABLE `app-users` DISABLE KEYS */;
-
-INSERT INTO `app-users` (`id`, `username`, `user-bio`, `user-email`, `user-pw`)
-VALUES
-	(1,'tim','g;negnak;gf','tim@tim.com','alwbdawjbd');
-
-/*!40000 ALTER TABLE `app-users` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table user-1-following
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `user-1-following`;
-
-CREATE TABLE `user-1-following` (
-  `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `following-username` varchar(20) DEFAULT NULL,
-  `following-id` int(11) DEFAULT NULL,
-  `true` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
-LOCK TABLES `user-1-following` WRITE;
-/*!40000 ALTER TABLE `user-1-following` DISABLE KEYS */;
-
-INSERT INTO `user-1-following` (`id`, `following-username`, `following-id`, `true`)
-VALUES
-	(1,'tim',5,1),
-	(2,'diana',7,0);
-
-/*!40000 ALTER TABLE `user-1-following` ENABLE KEYS */;
-UNLOCK TABLES;
-
-
-# Dump of table user-posts
-# ------------------------------------------------------------
-
-DROP TABLE IF EXISTS `user-posts`;
-
-CREATE TABLE `user-posts` (
-  `post-id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `post-Content` varchar(255) NOT NULL DEFAULT '',
-  `post-user` varchar(12) NOT NULL DEFAULT '',
-  `post-date-time` datetime NOT NULL,
-  `post-time` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `post-delete` tinyint(1) DEFAULT NULL,
-  PRIMARY KEY (`post-id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 
