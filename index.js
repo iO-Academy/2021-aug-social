@@ -1,15 +1,11 @@
-const http = require('http')
+const express = require('express')
 
-const hostname = '127.0.0.1'
+const app = express()
 const port = 8000
 
-const server = http.createServer((req, res) => {
-    res.statusCode=200
-    res.setHeader('Content-Type', 'text/plain')
-    res.end('Hello Hyper Lynx')
+app.get('/', (req, res) => {
+    res.send('Hello super lynx')
 })
-
-
-server.listen(port, hostname, () => {
-    console.log(`Server is running at http://${hostname}:${port}/`)
-})
+// The app.listen() function is used to bind and listen the
+// connections on the specified host and port.
+app.listen(port)
