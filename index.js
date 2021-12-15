@@ -49,7 +49,27 @@ app.get('/following/:id', async (req,res) => {
     res.json({following: following})
 })
 
-app.post('/signUp')
+
+app.post('/signUp', async (req,res) => {
+    const connection = await mysql.createConnection({
+        user: 'root',
+        password: 'password',
+        database: 'social-app'
+    })
+    const newUser = {
+        username: req.body.username
+    }
+    const result = await connection.query("INSERT INTO `users` (`username`) VALUES ('banana');")
+    // if (result){
+    //     res.json({success: true, data:result})
+    //     console.log('itemadded')
+    // } else {
+    //     res.json({success: false, data:result})
+    //     console.log('itemnotadded')
+    // }
+
+
+})
 
 
 // The app.listen() function is used to bind and listen the
