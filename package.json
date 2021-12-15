@@ -18,6 +18,8 @@
   "homepage": "https://github.com/iO-Academy/2021-aug-social#readme",
   "dependencies": {
     "express": "^4.17.1",
+    "express-jwt": "^6.1.0",
+    "jsonwebtoken": "^8.5.1",
     "promise-mysql": "^5.0.4"
   }
 }
