@@ -4,6 +4,7 @@ const mysql = require('promise-mysql')
 
 const app = express()
 const port = 8000
+app.use(express.json())
 
 // app.get('/profile/:id', async (req, res) => {
 //     // res.send('Hello super lynx')
@@ -51,15 +52,27 @@ app.get('/following/:id', async (req,res) => {
 
 
 app.post('/signUp', async (req,res) => {
+    let {username, bio, email, password} = req.body
+
     const connection = await mysql.createConnection({
         user: 'root',
         password: 'password',
         database: 'social-app'
     })
-    const newUser = {
-        username: req.body.username
-    }
-    const result = await connection.query("INSERT INTO `users` (`username`) VALUES ('banana');")
+
+    console.log(username)
+    console.log(bio)
+    console.log(email)
+    console.log(password)
+
+
+    // const newUser = {
+    //     username: req.body.username,
+    //     bio: req.body.bio,
+    //     email: req.body.email,
+    //     password: req.body.password
+    // }
+    const result = await connection.query("INSERT INTO users (username, bio, email, password) VALUES ('"+ ${username} +"','"+ ${bio} +"', '" + ${email} + "','" + ${password} + "');")
     // if (result){
     //     res.json({success: true, data:result})
     //     console.log('itemadded')
