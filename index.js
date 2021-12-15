@@ -2,10 +2,12 @@ const express = require('express')
 const mysql = require('promise-mysql')
 const expressjwt = require("express-jwt");
 const jwt = require("jsonwebtoken");
+const cors = require('cors')
 
 const app = express()
 const port = 8000
 app.use(express.json())
+app.use(cors())
 
 const errorCheck = function (err, req, res, next) {
     if (err.name === 'UnauthorizedError') {
