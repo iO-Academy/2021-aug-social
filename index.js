@@ -91,10 +91,12 @@ app.post('/login', async (req,res) => {
         database: 'social-app'
     })
 
-    const users = await connection.query('select `username`, `bio`, `email`, `password`, `id` from `users`')
+    let users = await connection.query('select `username`, `bio`, `email`, `password`, `id` from `users`')
+
+    users = JSON.parse(JSON.stringify(users))
 
     const user = users.find((u) => {
-        return u.email === req.body.email && u.password === req.body.password;
+        return u.email === email && u.password === password;
     });
 
     if (!user) {
@@ -108,21 +110,22 @@ app.post('/login', async (req,res) => {
         email: user.email
     }, "mysupersecretkey", {expiresIn: "3 hours"});
 
-    res.json({success: true, message: 'successfully logged in', data: {user, access_token: token}})
+    res.json({success: true, message: 'successfully logged in', data: {...user, access_token: token}})
 
 })
 
-app.get('/myprofile', jwtCheck, errorCheck, async (req, res) => {
-    let id = req.params.id
+app.get('/myProfile', jwtCheck, errorCheck, async (req, res) => {
+    let id = req.user.sub
+    console.log(id)
     const connection = await mysql.createConnection({
         user: 'root',
         password: 'password',
         database: 'social-app'
     })
 
-    const userInfo = await connection.query("SELECT `username`, `bio` FROM `users` WHERE `id` = '" + req.params.id + "'")
-    const posts = await connection.query(" SELECT `posts`.`content` FROM `users` LEFT JOIN `posts` ON `users`.`id` = `posts`.`user-id` WHERE `users`.`id` = '" + req.params.id + "'")
-    res.json({posts: posts, userInfo: userInfo})
+    // const userInfo = await connection.query("SELECT `username`, `bio`,`id` FROM `users` WHERE `id` = '" + id + "'")
+    const posts = await connection.query(" SELECT `content` FROM `posts` WHERE `user-id` = '" + id + "'")
+    res.json({posts: posts})
 
 })
 
