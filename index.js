@@ -91,7 +91,7 @@ app.post('/login', async (req,res) => {
         database: 'social-app'
     })
 
-    const users = await connection.query('select `username`, `bio`, `email`, `password` from `users`')
+    const users = await connection.query('select `username`, `bio`, `email`, `password`, `id` from `users`')
 
     const user = users.find((u) => {
         return u.email === req.body.email && u.password === req.body.password;
@@ -112,8 +112,18 @@ app.post('/login', async (req,res) => {
 
 })
 
-app.get('/secret', jwtCheck, errorCheck, (req, res) => {
-    res.json({message: 'hello'})
+app.get('/myprofile', jwtCheck, errorCheck, async (req, res) => {
+    let id = req.params.id
+    const connection = await mysql.createConnection({
+        user: 'root',
+        password: 'password',
+        database: 'social-app'
+    })
+
+    const userInfo = await connection.query("SELECT `username`, `bio` FROM `users` WHERE `id` = '" + req.params.id + "'")
+    const posts = await connection.query(" SELECT `posts`.`content` FROM `users` LEFT JOIN `posts` ON `users`.`id` = `posts`.`user-id` WHERE `users`.`id` = '" + req.params.id + "'")
+    res.json({posts: posts, userInfo: userInfo})
+
 })
 
 // The app.listen() function is used to bind and listen the
