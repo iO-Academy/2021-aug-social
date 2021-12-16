@@ -7,7 +7,7 @@
 #
 # Host: 127.0.0.1 (MySQL 5.7.35)
 # Database: social-app
-# Generation Time: 2021-12-14 10:12:25 +0000
+# Generation Time: 2021-12-16 14:36:58 +0000
 # ************************************************************
 
 
@@ -40,7 +40,9 @@ LOCK TABLES `posts` WRITE;
 
 INSERT INTO `posts` (`id`, `content`, `user-id`, `date-time`, `deleted`)
 VALUES
-	(1,'ljgfoiqepgfgre','1','2021-12-13 16:44:40',0);
+	(1,'this is a user 1 post','1','2021-12-14 14:59:06',0),
+	(2,'this is a user 2 post','2 ','2021-12-14 15:08:51',0),
+	(3,'this is another user 1 post','1','2021-12-14 15:09:25',0);
 
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -79,10 +81,10 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(12) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   `bio` varchar(500) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
