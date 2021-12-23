@@ -25,7 +25,7 @@ app.get('/profile/:id', async (req,res) => {
     const connection = await mysql.createConnection({
         user: 'root',
         password: 'password',
-        database: 'social-app'
+        database: 'fork-social-app'
     })
 
     const userInfo = await connection.query("SELECT `id`, `username`, `bio` FROM `users` WHERE `id` = '" + req.params.id + "'")
@@ -38,7 +38,7 @@ app.get('/following/:id', async (req,res) => {
     const connection = await mysql.createConnection({
         user: 'root',
         password: 'password',
-        database: 'social-app'
+        database: 'fork-social-app'
     })
     const following = await connection.query("SELECT `user-following`.`following-id` FROM `users` LEFT JOIN `user-following` ON `users`.`id` = `user-following`.`user-id` WHERE `users`.`id` = '" + req.params.id + "'")
     res.json({following: following})
@@ -50,7 +50,7 @@ app.post('/signUp', async (req,res) => {
     const connection = await mysql.createConnection({
         user: 'root',
         password: 'password',
-        database: 'social-app'
+        database: 'fork-social-app'
     })
 
     const result = await connection.query("INSERT INTO users (username, bio, email, password) VALUES ('" + username + "', '" + bio + "', '" + email + "', '" + password + "' )")
@@ -88,7 +88,7 @@ app.post('/login', async (req,res) => {
     const connection = await mysql.createConnection({
         user: 'root',
         password: 'password',
-        database: 'social-app'
+        database: 'fork-social-app'
     })
 
     let users = await connection.query('select `username`, `bio`, `email`, `password`, `id` from `users`')
@@ -120,7 +120,7 @@ app.get('/myProfile', jwtCheck, errorCheck, async (req, res) => {
     const connection = await mysql.createConnection({
         user: 'root',
         password: 'password',
-        database: 'social-app'
+        database: 'fork-social-app'
     })
 
     // const userInfo = await connection.query("SELECT `username`, `bio`,`id` FROM `users` WHERE `id` = '" + id + "'")
