@@ -6,8 +6,8 @@
 # https://github.com/sequelpro/sequelpro
 #
 # Host: 127.0.0.1 (MySQL 5.7.36)
-# Database: fork-social-app
-# Generation Time: 2021-12-23 09:49:24 +0000
+# Database: social-app
+# Generation Time: 2021-12-23 11:21:48 +0000
 # ************************************************************
 
 
@@ -40,7 +40,9 @@ LOCK TABLES `posts` WRITE;
 
 INSERT INTO `posts` (`id`, `content`, `user-id`, `date-time`, `deleted`)
 VALUES
-	(1,'ljgfoiqepgfgre','1','2021-12-13 16:44:40',0);
+	(1,'Fall Out boy v Panic at the Disco? No contest!','1','2021-12-16 17:53:38',0),
+	(2,'Guns \'n Roses best song? Sweet child o\' mine, Welcome to the Jungle or Paradise City? ','2','2021-12-17 08:52:37',0),
+	(3,'Elvis v Michael Jackson. Who\'s the Daddy!','1','2021-12-16 17:57:36',0);
 
 /*!40000 ALTER TABLE `posts` ENABLE KEYS */;
 UNLOCK TABLES;
@@ -79,10 +81,10 @@ DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,
-  `username` varchar(12) DEFAULT NULL,
+  `username` varchar(255) DEFAULT NULL,
   `bio` varchar(500) DEFAULT NULL,
-  `email` varchar(30) DEFAULT NULL,
-  `password` varchar(20) DEFAULT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -91,10 +93,30 @@ LOCK TABLES `users` WRITE;
 
 INSERT INTO `users` (`id`, `username`, `bio`, `email`, `password`)
 VALUES
-	(1,'tim','g;negnak;gf','tim@tim.com','password123'),
+	(1,'timbo','We love music!!!','tim@tim.com','password123'),
 	(2,'cuthbert','im cuthbert','cuth@bert.com','password123'),
 	(3,'gerbert','im gerbert','ger@bert.com','password123'),
-	(4,'hilary','Im hilary','hilary@hilary.com','password123');
+	(4,'jimbo','hello im jim','jim@jim.com','jimmmyjimbo'),
+	(5,'uhuu','I am alive and now work in coding!','elvis@elvis.com','bluesuedeshoes'),
+	(6,'lkjgfoegugogoguugog','ugfoigfgfe','bobbob.com','kjhghiogu'),
+	(7,'kermie','im green','kermit@kermie.com','misspiggy'),
+	(8,'kermie','im green','kermit@kermie.com','misspiggy'),
+	(9,'kermie','Im green','kermit@kermie.com','misspiggy'),
+	(10,'billy','Im silly','billy@nilly.com','sillybilly'),
+	(11,'nicky','nick','nciky@nicky.com','sillynicky'),
+	(12,'sugababe','I love sweets','jilly@nilly.com','sweeties'),
+	(13,'susiesue','Im Susie','susie@susie.com','shoeshines'),
+	(14,'jacky','Im Jack','jack@jackie.com','jackinthebox'),
+	(15,'silly','Im silly','billy@silly.com','sillybilly'),
+	(16,'kermie','pigs rule','kermit2kermie.com','misspiggy'),
+	(17,'barney','','barney@barney.com','barneyrubble'),
+	(18,'jimmy','Wheres Pinnochio','jimminy@jimminy.com','jimminicricket'),
+	(19,'blooper','Hi im bloopy','blooperblooper.com','bloopbloop'),
+	(20,'silly','silly','billybilly.com','sillybilly'),
+	(21,'tim','tim','tim@tim.com','timtimtim'),
+	(22,'peterparker','I love the web','peter@peter.com','spiderman'),
+	(23,'hilary','Im Hilary','hilary@hilary.com','hilarytaps'),
+	(24,'harricot','Beans are great','beans@heinz.com','bestontoast');
 
 /*!40000 ALTER TABLE `users` ENABLE KEYS */;
 UNLOCK TABLES;
